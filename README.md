@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# how-many-b-in-bubble
 
-## Getting Started
+> A public dashboard tracking the structural health of the AI industry. One day it'll say it burst.
 
-First, run the development server:
+**Live at**: _deploy to Vercel to get URL_
+
+---
+
+## What It Is
+
+`how-many-b-in-bubble` monitors key indicators of the AI industry's speculative cycle:
+
+- **Bubble Burst Score** — a 0–100 composite index (stable → elevated → critical → burst)
+- **Key Metrics** — hyperscaler CapEx, NVIDIA margins, enterprise ROI, Nasdaq P/E, VC funding, and more
+- **Live News Ticker** — RSS-powered, keyword-filtered headlines from Reuters, TechCrunch, CNBC, and others
+
+## Quick Start
 
 ```bash
+cp .env.local.example .env.local
+# fill in TURSO_DATABASE_URL, TURSO_AUTH_TOKEN, CRON_SECRET
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Database Setup (Turso)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. [Create a Turso database](https://turso.tech)
+2. Copy credentials to `.env.local`
+3. Generate and apply migrations:
+   ```bash
+   npm run db:generate
+   npm run db:migrate
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Updating Metrics
 
-## Learn More
+Edit `src/config/manual-metrics.json` to update manually maintained metric values.
+The next cron run will persist changes to Turso. Include source citations in your commit message.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment (Vercel)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push to GitHub, import to Vercel
+2. Set environment variables: `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `CRON_SECRET`
+3. Cron jobs (`vercel.json`) will run every 6 hours automatically
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech Stack
 
-## Deploy on Vercel
+Next.js 14 · Tailwind CSS · Tremor · Turso · Drizzle ORM · Vercel Crons · ISR
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See [DEVELOPMENT.md](./DEVELOPMENT.md) for the full technical specification.

@@ -1,0 +1,122 @@
+[
+  {
+    "metric_key": "hyperscaler_capex_total",
+    "value": 725,
+    "label": "Hyperscaler AI CapEx (Annual, $B)",
+    "unit": "USD_billions",
+    "updated_at": "2026-Q2",
+    "source_note": "Amazon $105B + Google $75B + Microsoft $80B + Meta $65B projected 2026"
+  },
+  {
+    "metric_key": "hyperscaler_capex_sales_ratio",
+    "value": 22.5,
+    "label": "Hyperscaler CapEx-to-Sales Ratio (%)",
+    "unit": "percent",
+    "updated_at": "2026-Q2",
+    "source_note": "Historical baseline ~10%; now 20-25% across Big Tech"
+  },
+  {
+    "metric_key": "cloud_ai_revenue_growth",
+    "value": 38,
+    "label": "Cloud AI Revenue Growth (YoY %)",
+    "unit": "percent",
+    "updated_at": "2026-Q2",
+    "source_note": "Azure AI, AWS Bedrock, Google Cloud AI growth composite"
+  },
+  {
+    "metric_key": "nvda_dc_revenue",
+    "value": 35.6,
+    "label": "NVIDIA Data Center Revenue (Quarterly, $B)",
+    "unit": "USD_billions",
+    "updated_at": "2026-Q2",
+    "source_note": "NVIDIA Q1 FY2026 data center segment"
+  },
+  {
+    "metric_key": "nvda_gross_margin",
+    "value": 74.6,
+    "label": "NVIDIA Gross Margin (%)",
+    "unit": "percent",
+    "updated_at": "2026-Q2",
+    "source_note": "NVIDIA Q1 FY2026 gross margin"
+  },
+  {
+    "metric_key": "amd_dc_revenue",
+    "value": 3.7,
+    "label": "AMD Data Center Revenue (Quarterly, $B)",
+    "unit": "USD_billions",
+    "updated_at": "2026-Q2",
+    "source_note": "AMD Q1 2026 data center segment"
+  },
+  {
+    "metric_key": "gpu_lead_time_weeks",
+    "value": 12,
+    "label": "GPU Supply Chain Lead Time (weeks)",
+    "unit": "weeks",
+    "updated_at": "2026-Q2",
+    "source_note": "Estimated industry lead time for H100/H200 class GPUs"
+  },
+  {
+    "metric_key": "ai_saas_arr_doubling_time",
+    "value": 9,
+    "label": "AI SaaS ARR Doubling Time (months)",
+    "unit": "months",
+    "updated_at": "2026-Q2",
+    "source_note": "Composite estimate for leading AI SaaS cos (OpenAI, Anthropic, etc.)"
+  },
+  {
+    "metric_key": "ai_compute_revenue_ratio",
+    "value": 0.72,
+    "label": "AI Compute-to-Revenue Ratio",
+    "unit": "ratio",
+    "updated_at": "2026-Q2",
+    "source_note": "Estimated compute spend vs revenue for pure-play AI companies"
+  },
+  {
+    "metric_key": "enterprise_ai_spend_per_employee",
+    "value": 2068,
+    "label": "Enterprise AI Spend per Employee (USD)",
+    "unit": "USD",
+    "updated_at": "2026-Q2",
+    "source_note": "US enterprise average 2026; tech sector >$3,000"
+  },
+  {
+    "metric_key": "enterprise_ai_roi",
+    "value": 3.70,
+    "label": "Enterprise AI ROI ($ per $1 spent)",
+    "unit": "ratio",
+    "updated_at": "2026-Q2",
+    "source_note": "Average $3.70 return overall; $1.20 for pilot-phase companies"
+  },
+  {
+    "metric_key": "enterprise_roi_hit_rate",
+    "value": 25,
+    "label": "% AI Initiatives Meeting Expected ROI",
+    "unit": "percent",
+    "updated_at": "2025",
+    "source_note": "Only 25% of AI initiatives met expected returns in 2025"
+  },
+  {
+    "metric_key": "ndx_pe_ratio",
+    "value": 38.5,
+    "label": "Nasdaq 100 P/E Ratio",
+    "unit": "ratio",
+    "updated_at": "2026-07",
+    "source_note": "Nasdaq 100 trailing P/E"
+  },
+  {
+    "metric_key": "ai_vc_funding_quarterly",
+    "value": 22.5,
+    "label": "AI VC Funding (Quarterly, $B)",
+    "unit": "USD_billions",
+    "updated_at": "2026-Q2",
+    "source_note": "Global AI VC quarterly deployment estimate"
+  },
+  {
+    "metric_key": "ai_capex_pct_gdp",
+    "value": 2.8,
+    "label": "AI CapEx as % of US GDP",
+    "unit": "percent",
+    "updated_at": "2026",
+    "source_note": "~$725B CapEx vs ~$26T US GDP estimate for 2026"
+  }
+]
