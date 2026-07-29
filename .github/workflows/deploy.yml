@@ -33,4 +33,4 @@ jobs:
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to production
-        run: vercel deploy --prebuilt --prod --no-wait --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --prod --force --no-wait --token=${{ secrets.VERCEL_TOKEN }}
