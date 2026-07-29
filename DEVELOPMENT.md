@@ -233,17 +233,17 @@ CRON_SECRET=your-secret        # passed as Bearer token to cron routes
   "crons": [
     {
       "path": "/api/cron/metrics",
-      "schedule": "0 */6 * * *"
+      "schedule": "0 8 * * *"
     },
     {
       "path": "/api/cron/score",
-      "schedule": "15 */6 * * *"
+      "schedule": "15 8 * * *"
     }
   ]
 }
 ```
 
-Metrics scrape runs every 6 hours; score is computed 15 minutes after.
+Metrics scrape runs daily at 8 AM UTC (Vercel Hobby plan); score is computed 15 minutes after.
 
 ---
 
