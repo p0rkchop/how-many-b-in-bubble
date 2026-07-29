@@ -1,3 +1,19 @@
+/**
+ * api/cron/score/route.ts — the GET /api/cron/score cron job handler.
+ *
+ * This handler computes the Bubble Burst Score from the current metric values
+ * stored in the database and persists a point-in-time snapshot. It is invoked
+ * by Vercel's cron system after the metrics cron job completes — ideally.
+ * In practice, Vercel runs cron jobs at their scheduled times regardless of
+ * whether dependent jobs have completed. If the metrics job is slow and the
+ * score job runs first, the score is computed from stale data. This is called
+ * a "race condition" in distributed systems and a "scheduling problem" in
+ * operations research, which solved it in 1956 using the Critical Path Method.
+ * We have not implemented the Critical Path Method. We have a cron schedule.
+ *
+ * Authentication uses the same shared-secret scheme as the metrics route.
+ * See that file for the security analysis. The conclusion was: it's fine.
+ */
 import { db } from "@/lib/db";
 import { bubbleScoreSnapshots, manualMetrics } from "@/lib/schema";
 import { computeBubbleScore } from "@/lib/score";

@@ -21,7 +21,7 @@ describe("ThemeToggle", () => {
 
   it("calls setTheme with 'dark' when current theme is light", async () => {
     const setTheme = vi.fn();
-    vi.mocked(useTheme).mockReturnValue({ theme: "light", setTheme } as ReturnType<typeof useTheme>);
+    vi.mocked(useTheme).mockReturnValue({ theme: "light", setTheme } as unknown as ReturnType<typeof useTheme>);
 
     const user = userEvent.setup();
     render(<ThemeToggle />);
@@ -31,7 +31,7 @@ describe("ThemeToggle", () => {
 
   it("calls setTheme with 'light' when current theme is dark", async () => {
     const setTheme = vi.fn();
-    vi.mocked(useTheme).mockReturnValue({ theme: "dark", setTheme } as ReturnType<typeof useTheme>);
+    vi.mocked(useTheme).mockReturnValue({ theme: "dark", setTheme } as unknown as ReturnType<typeof useTheme>);
 
     const user = userEvent.setup();
     render(<ThemeToggle />);

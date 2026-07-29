@@ -1,3 +1,23 @@
+/**
+ * api/cron/metrics/route.ts — the GET /api/cron/metrics cron job handler.
+ *
+ * This Route Handler is invoked by Vercel's built-in cron job system, configured
+ * in vercel.json. Vercel sends a GET request with an Authorization header containing
+ * the CRON_SECRET environment variable. This is a shared-secret authentication scheme
+ * — bearer token style — equivalent to HTTP Basic Auth but without the Base64 encoding.
+ * It is not OAuth, not JWT, not mTLS. It is a password in a header. This is fine for a
+ * cron job that ingests public data.
+ *
+ * The function does two things:
+ * 1. Reads manually-curated metric data from a JSON file and writes it to the database
+ * 2. Fetches auto-computed metrics from external APIs and writes those too
+ *
+ * This is called an "ETL pipeline" (Extract, Transform, Load), a term used by data
+ * engineers to describe processes that move data from one place to another. The
+ * "Transform" step is minimal here — we mostly pass values straight through. In a
+ * real ETL pipeline, the Transform step would normalise currencies, adjust for
+ * seasonality, and apply outlier detection. We don't do any of that. It's fine.
+ */
 import { db } from "@/lib/db";
 import { manualMetrics, metricSnapshots } from "@/lib/schema";
 import { getManualMetrics } from "@/lib/metrics/manual";
