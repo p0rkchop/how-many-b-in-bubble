@@ -118,5 +118,45 @@
     "unit": "percent",
     "updated_at": "2026",
     "source_note": "~$725B CapEx vs ~$26T US GDP estimate for 2026"
+  },
+  {
+    "metric_key": "broadcom_ai_revenue",
+    "value": 5.8,
+    "label": "Broadcom AI Revenue (Quarterly, $B)",
+    "unit": "USD_billions",
+    "updated_at": "2026-Q1",
+    "source_note": "Broadcom AI-specific revenue (custom ASICs + networking); FY2026 Q1 estimate based on ~$20B annual guidance"
+  },
+  {
+    "metric_key": "tsmc_ai_revenue_pct",
+    "value": 42,
+    "label": "TSMC HPC/AI Revenue (% of Total)",
+    "unit": "percent",
+    "updated_at": "2026-Q1",
+    "source_note": "TSMC HPC platform (AI/data center) as % of total wafer revenue; Q1 2026 estimate"
+  },
+  {
+    "metric_key": "coreweave_debt_to_revenue",
+    "value": 2.1,
+    "label": "CoreWeave Debt-to-Annualized-Revenue Ratio",
+    "unit": "ratio",
+    "updated_at": "2026-Q1",
+    "source_note": "~$8.5B total debt vs ~$4B annualized revenue (Q1 2026 est. post-IPO)"
+  },
+  {
+    "metric_key": "palantir_pe_ratio",
+    "value": 285,
+    "label": "Palantir P/E Ratio",
+    "unit": "ratio",
+    "updated_at": "2026-07",
+    "source_note": "Palantir trailing twelve-month P/E; extreme premium reflects AI commercial growth expectations"
+  },
+  {
+    "metric_key": "softbank_ai_commitment",
+    "value": 165,
+    "label": "SoftBank AI Committed Capital ($B)",
+    "unit": "USD_billions",
+    "updated_at": "2026",
+    "source_note": "$100B US AI pledge (2025) + ~$65B Vision Fund AI holdings and co-investments"
   }
 ]

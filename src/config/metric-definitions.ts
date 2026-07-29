@@ -62,7 +62,7 @@ export interface MetricDefinition {
   shortLabel: string;
   unit: string;
   description: string;
-  category: "hyperscaler" | "hardware" | "software" | "enterprise" | "macro";
+  category: "hyperscaler" | "hardware" | "software" | "enterprise" | "macro" | "infrastructure";
   source: "auto" | "manual";
   threshold?: MetricThreshold;
   /** If source is auto, which fetcher to use */
@@ -359,6 +359,92 @@ export const METRIC_DEFINITIONS: MetricDefinition[] = [
       direction: "above",
     },
   },
+
+  // ── Infrastructure / Pure-Play AI Cloud ───────────────────────────────────────
+  {
+    key: "coreweave_debt_to_revenue",
+    label: "CoreWeave Debt-to-Annualized-Revenue Ratio",
+    shortLabel: "CW Debt/Rev",
+    unit: "ratio",
+    description:
+      "CoreWeave total debt divided by annualized revenue. High leverage on GPU cloud = concentrated bubble risk.",
+    category: "infrastructure",
+    source: "manual",
+    threshold: {
+      elevated: 3,
+      critical: 5,
+      burst: 8,
+      direction: "above",
+    },
+  },
+
+  // ── Additional Hardware ───────────────────────────────────────────────────────
+  {
+    key: "broadcom_ai_revenue",
+    label: "Broadcom AI Revenue (Quarterly, $B)",
+    shortLabel: "AVGO AI Rev",
+    unit: "USD_billions",
+    description:
+      "Broadcom quarterly AI-specific revenue (custom ASICs for Google, Meta + networking). Sustained growth signals hyperscaler AI commitment beyond NVIDIA.",
+    category: "hardware",
+    source: "manual",
+    threshold: {
+      elevated: 6,
+      critical: 10,
+      burst: 16,
+      direction: "above",
+    },
+  },
+  {
+    key: "tsmc_ai_revenue_pct",
+    label: "TSMC HPC/AI Revenue (% of Total)",
+    shortLabel: "TSMC AI %",
+    unit: "percent",
+    description:
+      "TSMC high-performance computing segment as % of wafer revenue — a leading indicator for the entire AI chip supply chain.",
+    category: "hardware",
+    source: "manual",
+    threshold: {
+      elevated: 40,
+      critical: 55,
+      burst: 70,
+      direction: "above",
+    },
+  },
+
+  // ── Additional Macro / Valuation ──────────────────────────────────────────────
+  {
+    key: "palantir_pe_ratio",
+    label: "Palantir P/E Ratio",
+    shortLabel: "PLTR P/E",
+    unit: "ratio",
+    description:
+      "Palantir trailing P/E ratio. At 200-300x, it is the canonical example of enterprise AI valuation euphoria.",
+    category: "macro",
+    source: "manual",
+    threshold: {
+      elevated: 100,
+      critical: 200,
+      burst: 350,
+      direction: "above",
+    },
+  },
+  {
+    key: "softbank_ai_commitment",
+    label: "SoftBank AI Committed Capital ($B)",
+    shortLabel: "SoftBank AI",
+    unit: "USD_billions",
+    description:
+      "SoftBank total committed AI capital (Vision Fund AI holdings + US AI pledge). Proxy for late-stage speculative capital in the AI cycle.",
+    category: "macro",
+    source: "manual",
+    threshold: {
+      elevated: 80,
+      critical: 150,
+      burst: 250,
+      direction: "above",
+    },
+  },
 ];
 
 /**
@@ -389,8 +475,9 @@ export const METRIC_MAP = Object.fromEntries(
  */
 export const CATEGORIES = [
   { key: "hyperscaler", label: "Hyperscalers", emoji: "🏗️" },
-  { key: "hardware", label: "Hardware & Chips", emoji: "🔲" },   // 🔲 = processor die, obviously
+  { key: "hardware", label: "Hardware & Chips", emoji: "🔲" },
   { key: "software", label: "Software & Pure-Play AI", emoji: "🤖" },
+  { key: "infrastructure", label: "AI Infrastructure", emoji: "⚡" },
   { key: "enterprise", label: "Enterprise Buyers", emoji: "🏢" },
   { key: "macro", label: "Valuation & Macro", emoji: "📈" },
 ] as const;
