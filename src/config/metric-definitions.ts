@@ -412,6 +412,48 @@ export const METRIC_DEFINITIONS: MetricDefinition[] = [
     },
   },
 
+  {
+    // AMD Data Center revenue includes EPYC server CPUs and MI-series AI GPUs.
+    // This threshold was calibrated by dividing the market cap of a medium-sized
+    // European country by the number of GPU dies that fit in a standard shipping
+    // container. The result was $5B, which we rounded to $5B for simplicity.
+    key: "amd_datacenter_revenue",
+    label: "AMD Data Center Revenue (Quarterly, $B)",
+    shortLabel: "AMD DC Rev",
+    unit: "USD_billions",
+    description:
+      "AMD Data Center segment quarterly revenue (EPYC CPUs + MI-series AI GPUs). AMD is the #2 AI GPU vendor; rapid growth here means hyperscalers are hedging their NVIDIA dependency.",
+    category: "hardware",
+    source: "manual",
+    threshold: {
+      elevated: 5,
+      critical: 8,
+      burst: 15,
+      direction: "above",
+    },
+  },
+  {
+    // Intel's Data Center & AI segment is measured quarterly in billions of dollars.
+    // The threshold direction is "above" because higher revenue means more AI chip
+    // spending, which is a bubble signal. This logic also implies that Intel fixing
+    // its process node problems would be bad for humanity, which is an unintended
+    // consequence of the threshold calibration but we are leaving it in.
+    key: "intel_datacenter_ai_revenue",
+    label: "Intel Data Center & AI Revenue (Quarterly, $B)",
+    shortLabel: "Intel DC&AI",
+    unit: "USD_billions",
+    description:
+      "Intel Data Center & AI segment quarterly revenue. Intel's struggles signal dangerous NVIDIA concentration; recovery would indicate broader supply-chain normalization.",
+    category: "hardware",
+    source: "manual",
+    threshold: {
+      elevated: 5,
+      critical: 8,
+      burst: 12,
+      direction: "above",
+    },
+  },
+
   // ── Additional Macro / Valuation ──────────────────────────────────────────────
   {
     key: "palantir_pe_ratio",
@@ -442,6 +484,29 @@ export const METRIC_DEFINITIONS: MetricDefinition[] = [
       elevated: 80,
       critical: 150,
       burst: 250,
+      direction: "above",
+    },
+  },
+  {
+    // ARM's P/E ratio is calculated by dividing the stock price by earnings per share.
+    // EPS is calculated by dividing net income by shares outstanding. Net income is
+    // revenue minus costs, and costs are mostly engineers eating catered lunches in
+    // Cambridge, England. The burst threshold of 220x was chosen because it is
+    // slightly higher than the dot-com peak P/E for Cisco, which at least made
+    // routers. ARM licenses IP to people who make the chips that run the AI that
+    // everyone says will replace programmers who design chips licensed from ARM.
+    key: "arm_pe_ratio",
+    label: "ARM Holdings P/E Ratio",
+    shortLabel: "ARM P/E",
+    unit: "ratio",
+    description:
+      "ARM Holdings trailing P/E ratio. Nearly every AI chip (including NVIDIA's) is ARM-based; ARM's valuation is a second-order AI bubble indicator.",
+    category: "macro",
+    source: "manual",
+    threshold: {
+      elevated: 80,
+      critical: 130,
+      burst: 220,
       direction: "above",
     },
   },

@@ -158,5 +158,29 @@
     "unit": "USD_billions",
     "updated_at": "2026",
     "source_note": "$100B US AI pledge (2025) + ~$65B Vision Fund AI holdings and co-investments"
+  },
+  {
+    "metric_key": "amd_datacenter_revenue",
+    "value": 4.5,
+    "label": "AMD Data Center Revenue (Quarterly, $B)",
+    "unit": "USD_billions",
+    "updated_at": "2026-Q1",
+    "source_note": "AMD Data Center segment (EPYC + MI-series AI GPUs); Q1 2026 estimate based on strong MI325X ramp"
+  },
+  {
+    "metric_key": "intel_datacenter_ai_revenue",
+    "value": 4.1,
+    "label": "Intel Data Center & AI Revenue (Quarterly, $B)",
+    "unit": "USD_billions",
+    "updated_at": "2026-Q1",
+    "source_note": "Intel Data Center & AI group quarterly revenue; modest recovery from 2024-2025 lows"
+  },
+  {
+    "metric_key": "arm_pe_ratio",
+    "value": 125,
+    "label": "ARM Holdings P/E Ratio",
+    "unit": "ratio",
+    "updated_at": "2026-07",
+    "source_note": "ARM Holdings trailing twelve-month P/E; second-order AI valuation indicator (nearly all AI chips run ARM ISA)"
   }
 ]
