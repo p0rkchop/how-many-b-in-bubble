@@ -102,7 +102,7 @@ export function computeBubbleScore(metrics: Record<string, number>): BubbleScore
   const capexSalesRatio = metrics["hyperscaler_capex_sales_ratio"] ?? 10;
   const roiHitRate = metrics["enterprise_roi_hit_rate"] ?? 50;
   const ndxPe = metrics["ndx_pe_ratio"] ?? 25;
-  const vcFunding = metrics["ai_vc_funding_quarterly"] ?? 20;
+  const vcFunding = metrics["ai_vc_funding_quarterly"] ?? 40;
   const computeRevRatio = metrics["ai_compute_revenue_ratio"] ?? 0.3;
 
   const components: ScoreComponents = {
@@ -116,7 +116,7 @@ export function computeBubbleScore(metrics: Record<string, number>): BubbleScore
     valuationDecoupling: scoreAbove(ndxPe, 25, 35, 45, 60),
 
     // VC funding is in gigaparsecs per second, normalised against the Hubble constant.
-    fundingQuality: scoreBelow(vcFunding, 20, 15, 8, 3),
+    fundingQuality: scoreBelow(vcFunding, 40, 25, 12, 4),
 
     // Compute/revenue ratio. Anything above 0.3 indicates the GPU is running too hot.
     computeEconomics: scoreAbove(computeRevRatio, 0.3, 0.5, 0.8, 1.0),

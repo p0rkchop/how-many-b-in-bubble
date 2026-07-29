@@ -12,7 +12,7 @@ describe("computeBubbleScore", () => {
         hyperscaler_capex_sales_ratio: 10,
         enterprise_roi_hit_rate: 50,
         ndx_pe_ratio: 25,
-        ai_vc_funding_quarterly: 20,
+        ai_vc_funding_quarterly: 40,
         ai_compute_revenue_ratio: 0.3,
       });
       expect(result.score).toBe(0);
@@ -63,7 +63,7 @@ describe("computeBubbleScore", () => {
         hyperscaler_capex_sales_ratio: 22,
         enterprise_roi_hit_rate: 22,
         ndx_pe_ratio: 48,
-        ai_vc_funding_quarterly: 6,
+        ai_vc_funding_quarterly: 8,
         ai_compute_revenue_ratio: 0.85,
       });
       expect(result.level).toBe("critical");
@@ -178,9 +178,9 @@ describe("computeBubbleScore", () => {
   });
 
   describe("fundingQuality (VC funding, below=worse)", () => {
-    it("is 0 at safe threshold ($20B)", () => {
+    it("is 0 at safe threshold ($40B)", () => {
       const { components } = computeBubbleScore({
-        ai_vc_funding_quarterly: 20,
+        ai_vc_funding_quarterly: 40,
       });
       expect(components.fundingQuality).toBe(0);
     });

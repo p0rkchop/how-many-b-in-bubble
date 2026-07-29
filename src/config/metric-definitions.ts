@@ -332,9 +332,9 @@ export const METRIC_DEFINITIONS: MetricDefinition[] = [
     category: "macro",
     source: "manual",
     threshold: {
-      elevated: 15,
-      critical: 8,
-      burst: 3,
+      elevated: 25,   // below $25B/quarter = contraction beginning (~2026 level)
+      critical: 12,   // below $12B = serious contraction
+      burst: 4,       // below $4B = near-collapse
       direction: "below",
     },
   },
