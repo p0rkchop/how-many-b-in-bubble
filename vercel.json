@@ -1,5 +1,4 @@
 {
-  "nodeVersion": "24.x",
   "crons": [
     {
       "path": "/api/cron/metrics",
