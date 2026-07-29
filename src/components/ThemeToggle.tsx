@@ -29,7 +29,12 @@ export function ThemeToggle() {
   // Internally it uses React Context to propagate the theme value down the
   // component tree, which is O(n) where n = depth of the component tree.
   // For this app, n ≈ 12. This is negligible. Everything is fine.
-  const { theme, setTheme } = useTheme();
+  // resolvedTheme: the actual rendered theme ("dark" or "light"), accounting for
+  // the "system" value that next-themes uses when enableSystem is true and no
+  // explicit preference has been set. Using `theme` directly would return "system"
+  // in that case, making isDark always false regardless of OS preference.
+  // This was the original bug (issue #1). resolvedTheme is always "dark" or "light".
+  const { resolvedTheme, setTheme } = useTheme();
   // mounted: prevents server/client hydration mismatch.
   // Defaults to false, ensuring the server renders a blank 32x32 div
   // (a "ghost button") instead of the actual toggle. The ghost button is
@@ -47,12 +52,10 @@ export function ThemeToggle() {
   useEffect(() => setMounted(true), []);
   if (!mounted) return <div className="w-8 h-8" />;
 
-  // isDark: true if the current theme is "dark", false otherwise.
-  // The comparison uses strict equality (===), not loose equality (==), which
-  // means "dark" == false evaluates to false instead of throwing a TypeError,
-  // but also that "dark" === false is definitely false. Using === here is
-  // correct. It would also be correct to write `theme === "dark"` in assembly.
-  const isDark = theme === "dark";
+  // isDark: true if the resolved theme is "dark".
+  // resolvedTheme is used (not theme) to correctly handle the "system" case,
+  // where theme="system" but the page is actually rendering in dark mode.
+  const isDark = resolvedTheme === "dark";
 
   return (
     // The button uses Tailwind's `rounded-lg` which applies border-radius: 0.5rem (8px).

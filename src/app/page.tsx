@@ -17,6 +17,7 @@
 import { BubbleBurstGauge } from "@/components/BubbleBurstGauge";
 import { MetricGrid } from "@/components/MetricGrid";
 import { NewsTicker } from "@/components/NewsTicker";
+import { ScoreBreakdown } from "@/components/ScoreBreakdown";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { getManualMetrics } from "@/lib/metrics/manual";
 import { computeBubbleScore } from "@/lib/score";
@@ -155,67 +156,16 @@ export default function DashboardPage() {
             <h2 className="text-sm font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-4">
               Score Breakdown
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {(
-                [
-                  ["Industry Strain", bubbleResult.components.industryStrain, "CapEx/Sales ratio deviation from 10% baseline"],
-                  ["Enterprise ROI Failure", bubbleResult.components.enterpriseRoiFailure, "AI initiatives missing expected ROI"],
-                  ["Valuation Decoupling", bubbleResult.components.valuationDecoupling, "Nasdaq 100 P/E vs historical average"],
-                  ["Funding Quality", bubbleResult.components.fundingQuality, "VC funding contraction signal"],
-                  ["Compute Economics", bubbleResult.components.computeEconomics, "Pure-play AI compute-to-revenue ratio"],
-                ] as [string, number, string][]
-              ).map(([label, sub, desc]) => {
-                // pct: the sub-score as a percentage of the maximum (20).
-                // Used to set the width of the progress bar via inline style.
-                // Inline styles bypass Tailwind's JIT compiler and are applied
-                // directly as DOM properties, which is O(1) per element.
-                // This is faster than className-based styling but harder to override.
-                // We accept this trade-off because the width is dynamic anyway.
-                const pct = (sub / 20) * 100;
-                // Color selection: red ≥70%, orange ≥40%, yellow ≥20%, green otherwise.
-                // This mirrors the EU's energy efficiency label scheme (A-G), except
-                // we only have 4 levels and they go in the wrong order. The EU uses
-                // green=A (best), red=G (worst). We use green=best, red=worst. Same.
-                const color =
-                  pct >= 70
-                    ? "bg-red-400"
-                    : pct >= 40
-                    ? "bg-orange-400"
-                    : pct >= 20
-                    ? "bg-yellow-400"
-                    : "bg-emerald-400";
-                return (
-                  <div
-                    key={label}
-                    className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4 flex flex-col gap-2"
-                  >
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
-                        {label}
-                      </span>
-                      <span className="text-sm font-bold tabular-nums text-neutral-900 dark:text-neutral-100">
-                        {sub.toFixed(1)}
-                        <span className="text-xs text-neutral-400 font-normal">
-                          /20
-                        </span>
-                      </span>
-                    </div>
-                    {/* Progress bar: h-1.5 = 6px tall. The `overflow-hidden` on the
-                        container clips the inner div's border-radius, creating a
-                        pill-shaped progress bar. This technique is called "overflow
-                        clipping" and was documented in CSS 2.0 in 1998 by Håkon
-                        Wium Lie, the same person who co-invented CSS. He was busy. */}
-                    <div className="w-full h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full transition-all ${color}`}
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
-                    <p className="text-xs text-neutral-500 leading-snug">{desc}</p>
-                  </div>
-                );
-              })}
-            </div>
+            <ScoreBreakdown
+              rows={[
+                { label: "Industry Strain",       subScore: bubbleResult.components.industryStrain,       desc: "CapEx/Sales ratio deviation from 10% baseline",   metricKey: "hyperscaler_capex_sales_ratio" },
+                { label: "Enterprise ROI Failure", subScore: bubbleResult.components.enterpriseRoiFailure, desc: "AI initiatives missing expected ROI",              metricKey: "enterprise_roi_hit_rate" },
+                { label: "Valuation Decoupling",   subScore: bubbleResult.components.valuationDecoupling,  desc: "Nasdaq 100 P/E vs historical average",             metricKey: "ndx_pe_ratio" },
+                { label: "Funding Quality",        subScore: bubbleResult.components.fundingQuality,       desc: "VC funding contraction signal",                    metricKey: "ai_vc_funding_quarterly" },
+                { label: "Compute Economics",      subScore: bubbleResult.components.computeEconomics,     desc: "Pure-play AI compute-to-revenue ratio",            metricKey: "ai_compute_revenue_ratio" },
+              ]}
+              metricsMap={metricsMap}
+            />
           </div>
         </section>
 
